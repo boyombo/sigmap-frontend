@@ -49,7 +49,7 @@ export default {
           console.log(responseJson)
           console.log(responseJson.center)
           const constants = responseJson.constants
-          this.loadMap(constants.center.lat, constants.center.lng)
+          this.loadMap(constants.center.lat, constants.center.lng, constants.zoom)
           // this.circles = responseJson;
           let clat = constants.center.lat
           let clng = constants.center.lng
@@ -62,12 +62,12 @@ export default {
           this.drawPoly(constants.sw_center.lat, constants.sw_center.lng, clat, clng, signals.sw)
         })
     },
-    loadMap: function (lat, lng) {
+    loadMap: function (lat, lng, zoom = 16) {
       let msg = 'latitude: ' + lat + ', lng: ' + lng
       console.log(msg)
       const element = document.getElementById(this.mapName)
       const options = {
-        zoom: 16,
+        zoom: zoom,
         // eslint-disable-next-line
         center: new google.maps.LatLng(lat, lng)
       }
